@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IFchan — IFPA Campus Tucuruí</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <!-- Login Screen (shown if not logged in) -->
+  <div id="login-screen" class="login-screen">
+    <div class="login-box">
+      <div class="login-logo">
+        <span class="logo-if">IF</span><span class="logo-chan">chan</span>
+        <p class="login-subtitle">IFPA Campus Tucuruí</p>
+      </div>
+      <div class="login-form">
+        <input type="text" id="login-username" placeholder="Usuário ou e-mail" autocomplete="off">
+        <input type="password" id="login-password" placeholder="Senha">
+        <button id="login-btn" onclick="doLogin()">Entrar</button>
+        <p class="login-register">Não tem conta? <a href="#" onclick="showRegister()">Registre-se</a></p>
+        <p id="login-error" class="login-error hidden"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Register Screen -->
+  <div id="register-screen" class="login-screen hidden">
+    <div class="login-box">
+      <div class="login-logo">
+        <span class="logo-if">IF</span><span class="logo-chan">chan</span>
+        <p class="login-subtitle">Criar conta</p>
+      </div>
+      <div class="login-form">
+        <input type="text" id="reg-username" placeholder="Nome de usuário" autocomplete="off">
+        <input type="email" id="reg-email" placeholder="E-mail (@ifpa.edu.br)">
+        <input type="password" id="reg-password" placeholder="Senha">
+        <input type="password" id="reg-confirm" placeholder="Confirmar senha">
+        <button onclick="doRegister()">Registrar</button>
+        <p class="login-register">Já tem conta? <a href="#" onclick="showLogin()">Entrar</a></p>
+        <p id="reg-error" class="login-error hidden"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main App (frameset-style layout) -->
+  <div id="app" class="app hidden">
+    <!-- LEFT SIDEBAR -->
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-profile">
+        <div class="avatar" id="sidebar-avatar">F</div>
+        <div class="sidebar-info">
+          <span class="sidebar-greeting">Olá,</span>
+          <strong id="sidebar-username">Felipe</strong>
+          <span id="sidebar-handle" class="sidebar-handle">@felipe2</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="#" class="nav-item active" onclick="showPanel('feed')">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          Início
+        </a>
+        <a href="#" class="nav-item" onclick="showPanel('profile')">
+          <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          Minha Conta
+        </a>
+        <a href="#" class="nav-item" onclick="showPanel('history')">
+          <svg viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          Histórico
+        </a>
+      </nav>
+
+      <div class="sidebar-section-label">Ferramentas</div>
+      <nav class="sidebar-nav">
+        <a href="#" class="nav-item coming-soon">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Buscar
+          <span class="badge-soon">EM BREVE</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <a href="#" class="nav-item" onclick="showPanel('settings')">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+          Configurações
+        </a>
+        <a href="#" class="nav-item logout" onclick="doLogout()">
+          <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+          Sair
+        </a>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT AREA (frameset center) -->
+    <main id="main-content" class="main-content">
+      <!-- FEED PANEL -->
+      <div id="panel-feed" class="panel active">
+        <div class="feed-header">
+          <h2>Feed</h2>
+          <button class="btn-notif" onclick="showPanel('notifications')" id="notif-btn" title="Notificações">
+            <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/></svg>
+            <span class="notif-dot hidden" id="notif-dot"></span>
+          </button>
+        </div>
+
+        <div class="channel-list" id="channel-list">
+          <!-- populated by JS -->
+        </div>
+
+        <div class="threads-area" id="threads-area">
+          <div class="recentes-label">Postagens Recentes</div>
+          <div id="threads-list">
+            <!-- populated by JS -->
+          </div>
+          <button class="fab" onclick="openNewThread()" title="Nova Thread">+</button>
+        </div>
+      </div>
+
+      <!-- THREAD VIEW PANEL -->
+      <div id="panel-thread" class="panel">
+        <div class="thread-header">
+          <button class="back-btn" onclick="showPanel('feed')">← Voltar</button>
+          <div class="thread-header-info">
+            <div class="avatar sm" id="thread-author-avatar">G</div>
+            <span id="thread-author">GabrielADMIN</span>
+            <span class="sep">·</span>
+            <span id="thread-board">#geral</span>
+          </div>
+          <button class="btn-notif sm" onclick="showPanel('notifications')">
+            <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/></svg>
+          </button>
+        </div>
+
+        <div id="thread-content" class="thread-content-area">
+          <!-- populated by JS -->
+        </div>
+
+        <div class="replies-section">
+          <h4 class="replies-label">Respostas</h4>
+          <div id="replies-list"></div>
+        </div>
+
+        <div class="reply-composer">
+          <button class="reply-attach" title="Anexar arquivo" onclick="triggerFileInput()">📎</button>
+          <button class="reply-emoji" title="Emoji">😊</button>
+          <input type="file" id="reply-file-input" accept="image/*" style="display:none" onchange="previewReplyImage(event)">
+          <div id="reply-image-preview" class="reply-image-preview hidden"></div>
+          <input type="text" id="reply-input" placeholder="Lorem ipsum..." onkeydown="if(event.key==='Enter')submitReply()">
+          <button class="reply-send" onclick="submitReply()">
+            <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- NEW THREAD PANEL -->
+      <div id="panel-new-thread" class="panel">
+        <div class="thread-header">
+          <button class="back-btn" onclick="showPanel('feed')">← Cancelar</button>
+          <div class="thread-header-info">
+            <div class="avatar sm" id="new-thread-avatar">F</div>
+            <span id="new-thread-author">Felipe Jediel</span>
+            <span class="sep">·</span>
+            <select id="new-thread-channel" class="channel-select">
+              <option value="geral">#geral</option>
+              <option value="computacao">#computação</option>
+              <option value="biologia">#biologia</option>
+              <option value="memes">#memes</option>
+              <option value="jogos">#jogos</option>
+              <option value="skate">#skate</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="new-thread-body">
+          <input type="text" id="new-thread-title" class="new-thread-title" placeholder="Título da Thread" maxlength="120">
+          <textarea id="new-thread-text" class="new-thread-text" placeholder="O que você quer discutir?"></textarea>
+          <div id="new-thread-image-preview" class="reply-image-preview hidden"></div>
+        </div>
+
+        <div class="reply-composer">
+          <button class="reply-attach" title="Anexar imagem" onclick="triggerNewThreadFile()">📎</button>
+          <button class="reply-emoji" title="Emoji">😊</button>
+          <input type="file" id="new-thread-file" accept="image/*" style="display:none" onchange="previewNewThreadImage(event)">
+          <div style="flex:1"></div>
+          <button class="btn-publish" onclick="publishThread()">Enviar</button>
+        </div>
+      </div>
+
+      <!-- NOTIFICATIONS PANEL -->
+      <div id="panel-notifications" class="panel">
+        <div class="thread-header">
+          <button class="back-btn" onclick="showPanel('feed')">← Voltar</button>
+          <h3>Notificações</h3>
+        </div>
+        <div id="notifications-list" class="notifications-list">
+          <!-- populated by JS -->
+        </div>
+      </div>
+
+      <!-- PROFILE PANEL -->
+      <div id="panel-profile" class="panel">
+        <div class="thread-header">
+          <button class="back-btn" onclick="showPanel('feed')">← Voltar</button>
+          <h3>Minha Conta</h3>
+        </div>
+        <div class="profile-body">
+          <div class="profile-avatar-large" id="profile-avatar-lg">F</div>
+          <div class="profile-field">
+            <label>Nome de usuário</label>
+            <input type="text" id="profile-name-input">
+          </div>
+          <div class="profile-field">
+            <label>Handle</label>
+            <input type="text" id="profile-handle-input">
+          </div>
+          <div class="profile-field">
+            <label>E-mail</label>
+            <input type="email" id="profile-email-input">
+          </div>
+          <button class="btn-save" onclick="saveProfile()">Salvar alterações</button>
+          <p id="profile-msg" class="profile-msg hidden"></p>
+        </div>
+      </div>
+
+      <!-- HISTORY PANEL -->
+      <div id="panel-history" class="panel">
+        <div class="thread-header">
+          <button class="back-btn" onclick="showPanel('feed')">← Voltar</button>
+          <h3>Histórico</h3>
+        </div>
+        <div id="history-list" class="threads-list-inner">
+          <!-- populated by JS -->
+        </div>
+      </div>
+
+      <!-- SETTINGS PANEL -->
+      <div id="panel-settings" class="panel">
+        <div class="thread-header">
+          <button class="back-btn" onclick="showPanel('feed')">← Voltar</button>
+          <h3>Configurações</h3>
+        </div>
+        <div class="settings-body">
+          <div class="settings-section">
+            <h4>Aparência</h4>
+            <label class="toggle-row">
+              <span>Tema escuro</span>
+              <input type="checkbox" id="theme-toggle" onchange="toggleTheme(this)">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="settings-section">
+            <h4>Conta</h4>
+            <button class="btn-danger" onclick="doLogout()">Sair da conta</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
