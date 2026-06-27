@@ -42,8 +42,6 @@ git clone https://github.com/SEU-USUARIO/IFChat.git
 
 ## 📷 Capturas de Tela
 
-Adicione aqui imagens da aplicação:
-
 ```markdown
 ![Página Inicial](assets/screenshots/home.png)
 ![Fórum](assets/screenshots/forum.png)
