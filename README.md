@@ -43,8 +43,8 @@ git clone https://github.com/SEU-USUARIO/IFChat.git
 ## 📷 Capturas de Tela
 
 ```markdown
-![Página Inicial](assets/screenshots/home.png)
-![Fórum](assets/screenshots/forum.png)
+<img width="1024" height="576" alt="image" src="https://github.com/user-attachments/assets/c12fdb1c-8fcf-4bfb-b8c7-819490a1678f" />
+
 ```
 
 ## 👥 Equipe
