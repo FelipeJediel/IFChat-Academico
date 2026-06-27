@@ -42,10 +42,8 @@ git clone https://github.com/SEU-USUARIO/IFChat.git
 
 ## 📷 Capturas de Tela
 
-```markdown
 ![image alt](https://github.com/FelipeJediel/IFChat-Academico/blob/main/ImagemExemplo.png?raw=true)
 
-```
 
 ## 👥 Equipe
 
