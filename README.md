@@ -43,7 +43,8 @@ git clone https://github.com/SEU-USUARIO/IFChat.git
 ## 📷 Capturas de Tela
 
 ```markdown
-<img width="1024" height="576" alt="image" src="https://github.com/user-attachments/assets/c12fdb1c-8fcf-4bfb-b8c7-819490a1678f" />
+<img width="2730" height="1536" alt="Gemini_Generated_Image_3fbsr73fbsr73fbs" src="https://github.com/user-attachments/assets/7bc03b68-54e5-4b6a-bc10-7ef9f0e6ab4c" />
+
 
 ```
 
