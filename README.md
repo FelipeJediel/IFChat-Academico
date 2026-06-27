@@ -41,8 +41,7 @@ git clone https://github.com/SEU-USUARIO/IFChat.git
 4. Execute o projeto em um servidor local, como XAMPP ou Laragon.
 
 ## 📷 Capturas de Tela
-
-![image alt](https://github.com/FelipeJediel/IFChat-Academico/blob/main/ImagemExemplo.png?raw=true)
+[(https://github.com/FelipeJediel/IFChat-Academico/blob/main/ImagemExemplo.png?raw=true)](https://github.com/FelipeJediel/IFChat-Academico/blob/31e9d45426294787c45fca41685d6c78a04dcd73/ImagemExemplo.png).
 
 
 ## 👥 Equipe
